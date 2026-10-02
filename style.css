@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+ul {
+    list-style-type: none;
+    width: 50%;
+}
+li {
+    padding: 5%;
+    font-family: 'Geist', sans-serif;
+    font-size: 2.4rem;
+    color: var(--color2);
+}
+
+a:hover > .image-template {
+    font-variation-settings: 'wght' 500;
+}
+
+:root {
+    --main-width: 1000px;
+    --x: 0;
+    --y: 0;
+    --s: 0;
+    --r: 0;
+
+    --color1: #1a1a1a;
+    --color2: #F2F2F2;
+}
+
+/*tag selectors*/
+
+body {
+    background-color: var(--color1);
+    color: var(--color2);
+}
+
+body::before {
+    /* i copied this from reddit and need to figure out how exactly it works*/
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: var(--color1);
+    background-image: url("images/resources/Texturelabs_Glass_150M.jpg");
+    background-size: 1920px;
+    opacity: .5;
+    z-index: -2;
+}
+
+/*class selectors*/
+
+.flex-horizontal {
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.logo {
+    width: 200px;
+    rotate: 5deg;
+}
+
+.navbar {
+    border: 1px solid red;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--color2);
+}
+
+.image-template {
+    position: relative;
+    z-index: 1;
+}
+
+.featured-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    rotate: -5deg;
+    z-index: 1;
+}
+
+.featured-button {
+    /*this is shit. need to read up on buttons and do better*/
+    font-family: "PermanentMarker", cursive;
+    color: var(--color1);
+    font-size: 2.5rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 2rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+}
+
+.featured-button img {
+    width: 5rem;
+    height: auto;
+    padding-top: 1rem;
+}
+
+.featured-button:hover {
+    cursor: zoom-in;
+}
+
+.shadow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    filter: blur(3px) opacity(0.3);
+    /*this does not blur the edges on masks. need to find a new method*/
+    
+    z-index: -1;
+}
+
+/*id selectors*/
+
+#hero-featured {
+    width: 400px;
+    rotate: 4deg;
+    mask: url("images/resources/Texturelabs_Film_182M.jpg") luminance 0% 0% / 100% 100% no-repeat;
+    /*maybe class chaining to make this and shadow class move together?*/
+}
+
+.temp {
+    width: 500px;
+    rotate: 5deg;
+    mask: url("images/resources/Texturelabs_Film_182M.jpg") luminance 0% 0% / 100% 100% no-repeat;
+}
+
+/*animations*/
+
+/*media queries*/
+
+@media (min-width: 1000px) {
+    body{
+        max-width: 1000px;    /* Locks to a fixed width once the screen exceeds 1200px */
+    margin: 0 auto; 
+    }
+}
+
+/*fonts*/
+
+@font-face {
+    font-family: 'Kufam';
+    src: url('fonts/Geist/Geist-VariableFont_wght.ttf') format('truetype');
+    font-variation-settings:
+    'wght' 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geist';
+    src: url('fonts/Geist/Geist-VariableFont_wght.ttf') format('truetype');
+    font-variation-settings:
+    'wght' 100;
+}
+
+@font-face {
+    font-family: 'PermanentMarker';
+    src: url('fonts/PermanentMarker/PermanentMarker-Regular.ttf') format('truetype');
+}
+
+
+
