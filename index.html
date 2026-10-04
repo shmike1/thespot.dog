@@ -28,17 +28,34 @@
         </ul>
     </nav>
 
-    <main id="imageboard-1">
-        <div class="image-template">
-            
-                <button class="featured-button" type="dialog">
-                    <span>featured</span>
-                    <img src="images/featuredarrows.svg">
-                </button> 
-            
-            <img id="hero-featured" src="images/art/2.3_placeholder.png">
-            <img id="hero-featured" class="shadow" src="images/art/2.3_placeholder.png">
+    <section class="imageboard" id="board1">
+        <div id="shmike1">
+            <button class="flex-horizontal" id="featured-button" type="button">
+                <span>featured</span>
+                <img src="images/featuredarrows.svg">
+            </button>
+            <button class="expand-image" command="show-modal" commandfor="expand-dialogue">
+                <img class="fullscreen-icon" src="images/image-expand.svg">
+                <img class="unique-image" src="images/art/2.3_placeholder.png">
+                <img class="unique-image shadow" src="images/art/2.3_placeholder.png">
+            </button>
+            <dialog id="expand-dialogue" >
+                <div class="flex-vertical">
+                    
+                    <h1>Temporary Title</h1>
+                    <img src="images/art/2.3_placeholder.png">
+                    <button class="x-button" commandfor="expand-dialogue" command="close"></button>
+                </div>
+            </dialog>
         </div>
-    </main>
+    </section>
+   
+   
+   
+    <section class="imageboard" id="board2">
+        
+    </section>
+
+
 </body>
 </html>

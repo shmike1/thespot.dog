@@ -40,9 +40,11 @@ body {
 }
 
 body::before {
-    /* i copied this from reddit and need to figure out how exactly it works*/
+    /* for the backgronud image. 
+    i copied this from reddit and need to figure out how exactly it works*/
     content: "";
     position: fixed;
+    background-position: center;
     inset: 0;
     background-color: var(--color1);
     background-image: url("images/resources/Texturelabs_Glass_150M.jpg");
@@ -57,6 +59,13 @@ body::before {
     display:flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    align-items: center;
+}
+
+.flex-vertical {
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: center;
     align-items: center;
 }
 
@@ -79,36 +88,6 @@ body::before {
     z-index: 1;
 }
 
-.featured-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    rotate: -5deg;
-    z-index: 1;
-}
-
-.featured-button {
-    /*this is shit. need to read up on buttons and do better*/
-    font-family: "PermanentMarker", cursive;
-    color: var(--color1);
-    font-size: 2.5rem;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    border-radius: 2rem;
-    padding-bottom: 1.5rem;
-    padding-left: 1rem;
-}
-
-.featured-button img {
-    width: 5rem;
-    height: auto;
-    padding-top: 1rem;
-}
-
-.featured-button:hover {
-    cursor: zoom-in;
-}
-
 .shadow {
     position: absolute;
     top: 10px;
@@ -119,13 +98,161 @@ body::before {
     z-index: -1;
 }
 
+/*when an image board fills up, it will move down a chunk.
+    every chunk has a unique ID for positioning.*/
+
+.imageboard {
+    position: relative;
+    border: 1px solid green;
+    max-width: 1000px;
+    height: 1000px;
+}
+
+#board1 {
+    position: relative;
+}
+
+#board2 {
+    position: relative;
+    top: -100px;
+}
+
 /*id selectors*/
 
-#hero-featured {
+/* the following id's/classes (up to #featured-button) 
+are for adding a unique image to the site.*/
+
+#shmike1 {
+    /*sets the position of the unique image and everything in it*/
+    position: relative;
+    top: 10%;
+    left: 20%;
+    /* rotate: 5deg; */
     width: 400px;
-    rotate: 4deg;
+    height: 600px; 
+}
+
+
+
+#shmike1 #featured-button {
+    /* there is only one featured art at a time, 
+    and its button placement needs to be adjusted for said image. */
+    position: absolute;
+    rotate: -10deg;
+    top: 10px;
+    left: 10px;
+}
+
+#shmike1 .unique-image {
+    /* currently, the image fits to the size of the div it's in. this is wrong.
+    it needs to be updated that the div conforms to this image's shape,
+    but can be controlled by the div, somehow.*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
     mask: url("images/resources/Texturelabs_Film_182M.jpg") luminance 0% 0% / 100% 100% no-repeat;
     /*maybe class chaining to make this and shadow class move together?*/
+}
+
+.fullscreen-icon {
+    /*every image will have this expand icon in it too.
+    (the image and the icon are in a button that opens a modal)*/
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color1);
+    mask: url("images/image-expand.svg") alpha 0% 0% / 100% 100% no-repeat;
+    z-index: 1;
+    bottom: 50px;
+    left: 50px;
+    
+}
+
+.fullscreen-icon:hover {
+    background-color: white;
+    color: white;
+}
+
+/*dialogue/modal customization*/
+
+dialog {
+    margin: auto;
+    border:none;
+    background-color: transparent;
+    overflow: hidden;
+    max-width: 1000px;
+    padding: 2rem;
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 10%);
+  backdrop-filter:blur(3px) saturate(50%);
+}
+
+dialog img {
+    flex: auto 0 1;
+    max-height: 80vh;
+}
+
+dialog h1 {
+    flex: auto 0 1;
+    color: white;
+}
+
+dialog .x-button {
+    /*uses a mask + background color for the shape.*/
+    margin: 2rem;
+    flex: auto 0 1;
+    background-color: var(--color2);
+    width: 100px;
+    height: 100px;
+    mask: url("images/x-button.svg") alpha 0% 0% / 100% 100% no-repeat;
+    transition: background-color .2s linear,
+    scale .2s linear;
+}
+
+dialog .x-button:hover {
+    background-color: red;
+    scale: 1.2;
+    transition: background-color .2s linear,
+    scale .2s linear;
+}
+
+
+/*featured button functionality*/
+#featured-button {
+    height: 5rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 1.5rem;
+    z-index: 1;
+    padding: .5rem;
+    /*this is shit. need to read up on buttons and do better*/
+    color: var(--color1);
+    
+}
+#featured-button img {
+    width: auto;
+    position: relative;
+    height: 3rem;
+    top: -.8rem;
+}
+#featured-button span {
+    position: relative;
+    font-family: "PermanentMarker", cursive;
+    font-size: 4rem;
+    padding-left: 1rem;
+    top: -1rem;
+    padding-right: 1rem;
+}
+#featured-button:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    rotate: -20deg;
+    scale: 1.05;
+    transition: background-color .1s ease-out,
+    scale .1s ease-out;
 }
 
 .temp {
@@ -134,13 +261,12 @@ body::before {
     mask: url("images/resources/Texturelabs_Film_182M.jpg") luminance 0% 0% / 100% 100% no-repeat;
 }
 
-/*animations*/
-
 /*media queries*/
 
 @media (min-width: 1000px) {
+    /* Locks to a fixed width once the screen exceeds 1000px */
     body{
-        max-width: 1000px;    /* Locks to a fixed width once the screen exceeds 1200px */
+        max-width: 1000px;    
     margin: 0 auto; 
     }
 }
