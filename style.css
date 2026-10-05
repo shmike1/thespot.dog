@@ -17,10 +17,6 @@ li {
     color: var(--color2);
 }
 
-a:hover > .image-template {
-    font-variation-settings: 'wght' 500;
-}
-
 :root {
     --main-width: 1000px;
     --x: 0;
@@ -88,14 +84,8 @@ body::before {
     z-index: 1;
 }
 
-.shadow {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    filter: blur(3px) opacity(0.3);
-    /*this does not blur the edges on masks. need to find a new method*/
-    
-    z-index: -1;
+a:hover > .image-template {
+    font-variation-settings: 'wght' 500;
 }
 
 /*when an image board fills up, it will move down a chunk.
@@ -117,8 +107,6 @@ body::before {
     top: -100px;
 }
 
-/*id selectors*/
-
 /* the following id's/classes (up to #featured-button) 
 are for adding a unique image to the site.*/
 
@@ -131,8 +119,6 @@ are for adding a unique image to the site.*/
     width: 400px;
     height: 600px; 
 }
-
-
 
 #shmike1 #featured-button {
     /* there is only one featured art at a time, 
@@ -157,7 +143,8 @@ are for adding a unique image to the site.*/
 }
 
 .fullscreen-icon {
-    /*every image will have this expand icon in it too.
+    /* find a better name for this.
+    every image will have this expand icon in it. it's actually just a box with a mask for color change.
     (the image and the icon are in a button that opens a modal)*/
     position: absolute;
     width: 50px;
@@ -167,23 +154,31 @@ are for adding a unique image to the site.*/
     z-index: 1;
     bottom: 50px;
     left: 50px;
-    
+    transition: background-color .2s linear;
 }
 
-.fullscreen-icon:hover {
+.expand-image:hover > .fullscreen-icon {
     background-color: white;
     color: white;
+    transition: background-color .2s linear;
 }
 
-/*dialogue/modal customization*/
+.shadow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    filter: blur(3px) opacity(0.3);
+    /*this does not blur the edges on masks. need to find a new method*/
+    
+    z-index: -1;
+}
+
+/*dialogue/modal customization. the look for fullscreening an image*/
 
 dialog {
-    margin: auto;
     border:none;
     background-color: transparent;
     overflow: hidden;
-    max-width: 1000px;
-    padding: 2rem;
 }
 
 dialog::backdrop {
@@ -191,29 +186,40 @@ dialog::backdrop {
   backdrop-filter:blur(3px) saturate(50%);
 }
 
-dialog img {
-    flex: auto 0 1;
-    max-height: 80vh;
+.fullscreen {
+    flex-wrap: nowrap;
+    justify-content: space-between; /*most important line in this whole thing*/
+    height: 100cqh;
+    width: 100cqw;
+    padding: 5%;
 }
 
-dialog h1 {
-    flex: auto 0 1;
+.fullscreen h1 {
+    /*i put margins on the tag so gotta reset it lol*/
+    margin: 0;
+    padding: 2rem;
     color: white;
 }
 
-dialog .x-button {
+.fullscreen img {
+    position: relative;
+    flex: 1 1 0;      /* Forces it to share space and shrink */
+    min-height: 0;    /* Overrides the image's massive intrinsic height */
+    object-fit: contain; /* Prevents the image from squishing or distorting */
+    width: 100%;
+}
+
+.fullscreen .x-button {
     /*uses a mask + background color for the shape.*/
-    margin: 2rem;
-    flex: auto 0 1;
+    padding: 2rem;
     background-color: var(--color2);
-    width: 100px;
-    height: 100px;
+    min-height: 100px;
     mask: url("images/x-button.svg") alpha 0% 0% / 100% 100% no-repeat;
     transition: background-color .2s linear,
     scale .2s linear;
 }
 
-dialog .x-button:hover {
+.fullscreen .x-button:hover {
     background-color: red;
     scale: 1.2;
     transition: background-color .2s linear,
@@ -261,6 +267,58 @@ dialog .x-button:hover {
     mask: url("images/resources/Texturelabs_Film_182M.jpg") luminance 0% 0% / 100% 100% no-repeat;
 }
 
+/* the following section is for the aboutme page.*/ 
+
+.about-me {
+    height: 500px;
+}
+
+.about-me > * {
+    flex: 1;
+}
+
+.about-me .link-bar {
+    flex: 1;
+    align-content: space-evenly;
+}
+
+.about-me p {
+    padding: 10%;
+}
+
+.profile-pic {
+    border-radius: 100%;
+    padding:2rem;
+}
+
+.link-bar a {
+    margin: 5rem;
+}
+
+h1, h2 {
+    font-family: "Kufam", sans-serif;
+    font-style: italic;
+    font-size: 4.8rem;
+    margin: 0rem;
+}
+
+h1 {
+    margin: 5rem;
+}
+
+p {
+    font-family:"Geist", sans-serif;
+    font-size: 2.0rem;
+    font-variation-settings: 'wght' 300;
+}
+
+hr {
+    margin: 5rem;
+    width: 75%;
+    border: 1px solid var(--color2);
+}
+
+
 /*media queries*/
 
 @media (min-width: 1000px) {
@@ -275,7 +333,7 @@ dialog .x-button:hover {
 
 @font-face {
     font-family: 'Kufam';
-    src: url('fonts/Geist/Geist-VariableFont_wght.ttf') format('truetype');
+    src: url(fonts/Kufam/Kufam-VariableFont_wght.ttf) format('truetype');
     font-variation-settings:
     'wght' 900;
     font-style: normal;

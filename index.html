@@ -11,20 +11,36 @@
     
     <nav class="flex-horizontal">
         <div class="image-template">
-            <img class="logo" src="images/thespot_logo.svg">
-            <img class="logo shadow" src="images/thespot_logo.svg">
+            <a href="index.html">
+                <img class="logo" src="images/thespot_logo.svg">
+                <img class="logo shadow" src="images/thespot_logo.svg">
+            </a>
         </div>
         <ul class="flex-horizontal navbar">
             <li>
                 <a href="testing.html">
                     <div class="image-template">
-                        <p>home</p>
-                        <p class="shadow">home</p>
+                        <span>archive</span>
+                        <span class="shadow">archive</span>
                     </div>
                 </a>
             </li>
-            <li>about</li>
-            <li>apply</li>
+            <li>
+                <a href="about.html">
+                    <div class="image-template">
+                        <span>about</span>
+                        <span class="shadow">about</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="apply.html">
+                    <div class="image-template">
+                        <span>apply</span>
+                        <span class="shadow">apply</span>
+                    </div>
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -34,17 +50,16 @@
                 <span>featured</span>
                 <img src="images/featuredarrows.svg">
             </button>
-            <button class="expand-image" command="show-modal" commandfor="expand-dialogue">
-                <img class="fullscreen-icon" src="images/image-expand.svg">
+            <button class="expand-image" command="show-modal" commandfor="fullscreen-shmike1">
+                <div class="fullscreen-icon"></div>
                 <img class="unique-image" src="images/art/2.3_placeholder.png">
                 <img class="unique-image shadow" src="images/art/2.3_placeholder.png">
             </button>
-            <dialog id="expand-dialogue" >
-                <div class="flex-vertical">
-                    
+            <dialog id="fullscreen-shmike1" >
+                <div class="flex-vertical fullscreen">
                     <h1>Temporary Title</h1>
                     <img src="images/art/2.3_placeholder.png">
-                    <button class="x-button" commandfor="expand-dialogue" command="close"></button>
+                    <button class="x-button" commandfor="fullscreen-shmike1" command="close"></button>
                 </div>
             </dialog>
         </div>
